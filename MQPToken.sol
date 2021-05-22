@@ -9,6 +9,7 @@ contract MQPToken is ERC20Standard {
 		_decimals = 8;
 		_symbol = "MQP";
 		version = "1.0";
+		minter = msg.sender;
 		balances[msg.sender] = _totalSupply;
 	}
 }

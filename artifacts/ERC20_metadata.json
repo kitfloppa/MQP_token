@@ -6,12 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -60,66 +54,6 @@
 				],
 				"name": "Transfer",
 				"type": "event"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "_decimals",
-				"outputs": [
-					{
-						"internalType": "uint8",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "_name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "_symbol",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "_totalSupply",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
 			},
 			{
 				"constant": true,
@@ -247,21 +181,6 @@
 			{
 				"constant": true,
 				"inputs": [],
-				"name": "minter",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
 				"name": "name",
 				"outputs": [
 					{
@@ -360,21 +279,6 @@
 				"payable": false,
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "version",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -386,7 +290,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MQPToken.sol": "MQPToken"
+			"contracts/ERC20Standard.sol": "ERC20"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},
@@ -402,13 +306,6 @@
 			"urls": [
 				"bzz-raw://efea9a2945bd2461d64fcd5f6d488ac978a9aaa9a2a7c89c4a8f8c9c44de480b",
 				"dweb:/ipfs/QmYY1NynD25VmVrQxVrxqVHwk59m2G5kiFp178yDxJpNV9"
-			]
-		},
-		"contracts/MQPToken.sol": {
-			"keccak256": "0x47064b592c255d29f407fd49bb5bdcb249f6fc8f14c22dc04d8cc056b40b64a3",
-			"urls": [
-				"bzz-raw://8a3901e0790f2666cfaac06de513c790a81a4aaa5e2e7e2bd7aeefdd6e032a9e",
-				"dweb:/ipfs/QmagfqL1Hf82N8Np3A1qYeuUhcGKKWi7nLwYfDSWPfmMGj"
 			]
 		}
 	},

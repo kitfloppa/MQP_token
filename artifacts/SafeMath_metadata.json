@@ -26,10 +26,10 @@
 	},
 	"sources": {
 		"contracts/ERC20Standard.sol": {
-			"keccak256": "0x8003dc050deabc521d6501ab59238bc8271fc36018205b21cf24153a772db8ed",
+			"keccak256": "0xb13123585a4ef74f93d272fc69776d2823f2344ba15cdc2a1e5d8b29e07a63eb",
 			"urls": [
-				"bzz-raw://742b655f44ba71d7ded9b13d87e2d7b9ef4e35b528e44a341159111dc18cb27b",
-				"dweb:/ipfs/QmZWCQLmZ2sBPwyeyVcrLyBroUmfa6t1u4z6Xg4tBvuvYd"
+				"bzz-raw://efea9a2945bd2461d64fcd5f6d488ac978a9aaa9a2a7c89c4a8f8c9c44de480b",
+				"dweb:/ipfs/QmYY1NynD25VmVrQxVrxqVHwk59m2G5kiFp178yDxJpNV9"
 			]
 		}
 	},

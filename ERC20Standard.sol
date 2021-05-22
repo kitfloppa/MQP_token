@@ -1,5 +1,22 @@
 pragma solidity ^0.5.7;
 
+interface ERC20 {
+  function name() external  view returns (string memory);
+  function symbol() external  view returns (string memory);
+  function decimals() external  view returns (uint8);
+  function totalSupply() external  view returns (uint256);
+  function balanceOf(address _owner) external  view returns (uint256 balance);
+  function transfer(address _to, uint256 _value) external  returns (bool success);
+  function transferFrom(address _from, address _to, uint256 _value) external  returns (bool success);
+  function approve(address _spender, uint256 _value) external  returns (bool success);
+  function allowance(address _owner, address _spender) external  view returns (uint256 remaining);
+  function mint(address account, uint256 amount) external;
+  function burn(uint256 amount) external;
+
+  event Transfer(address indexed _from, address indexed _to, uint256 _value);
+  event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+}
+
 library SafeMath {
 
     function mul(uint256 a, uint256 b) internal pure returns (uint256) {
@@ -40,7 +57,7 @@ library SafeMath {
     }
 }
 
-contract ERC20Standard {
+contract ERC20Standard is ERC20 {
 	using SafeMath for uint256;
 	
 	uint256 public _totalSupply;
@@ -49,6 +66,7 @@ contract ERC20Standard {
 	string public _symbol;
 	string public version;
 	
+	address public minter;
 	mapping (address => uint256) balances;
 	mapping (address => mapping (address => uint)) allowed;
 
@@ -103,8 +121,18 @@ contract ERC20Standard {
 	function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
 		return allowed[_owner][_spender];
 	}
-
-	event Transfer(address indexed _from, address indexed _to, uint256 _value);
-		
-	event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+	
+	function mint(address account, uint256 amount) public {
+	    require(msg.sender == minter && amount != 0);
+        _totalSupply.add(amount);
+        balances[account].add(amount);
+        emit Transfer(address(0), account, amount);
+	}
+	
+	function burn(uint256 amount) public {
+	    require(amount != 0 && amount <= balances[minter]);
+        _totalSupply = _totalSupply.sub(amount);
+        balances[minter] = balances[minter].sub(amount);
+        emit Transfer(minter, address(0), amount);
+	}
 }
