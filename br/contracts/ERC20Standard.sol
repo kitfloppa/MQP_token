@@ -1,21 +1,6 @@
-pragma solidity ^0.5.7;
+pragma solidity ^0.6.0;
 
-interface ERC20 {
-  function name() external  view returns (string memory);
-  function symbol() external  view returns (string memory);
-  function decimals() external  view returns (uint8);
-  function totalSupply() external  view returns (uint256);
-  function balanceOf(address _owner) external  view returns (uint256 balance);
-  function transfer(address _to, uint256 _value) external  returns (bool success);
-  function transferFrom(address _from, address _to, uint256 _value) external  returns (bool success);
-  function approve(address _spender, uint256 _value) external  returns (bool success);
-  function allowance(address _owner, address _spender) external  view returns (uint256 remaining);
-  function mint(address account, uint256 amount) external;
-  function burn(uint256 amount) external;
-
-  event Transfer(address indexed _from, address indexed _to, uint256 _value);
-  event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-}
+import "../interfaces/ERC20.sol";
 
 library SafeMath {
 
@@ -75,27 +60,27 @@ contract ERC20Standard is ERC20 {
 		_;
 	} 
 
-    function name() public view returns (string memory) {
+    function name() public override view returns (string memory) {
         return _name;
     }
     
-    function symbol() public view returns (string memory) {
+    function symbol() public override view returns (string memory) {
         return _symbol;
     }
     
-    function decimals() public view returns (uint8) {
+    function decimals() public override view returns (uint8) {
         return _decimals;
     }
     
-    function totalSupply() public view returns (uint256) {
+    function totalSupply() public override view returns (uint256) {
         return _totalSupply;
     }
 	
-	function balanceOf(address _owner) public view returns (uint256 balance) {
+	function balanceOf(address _owner) public override view returns (uint256 balance) {
 		return balances[_owner];
 	}
 
-	function transfer(address _to, uint256 _value) public returns (bool success) {
+	function transfer(address _to, uint256 _value) public override returns (bool success) {
 	    require(balances[msg.sender] >= _value && _value > 0);
 	    balances[msg.sender] = balances[msg.sender].sub(_value);
 	    balances[_to] = balances[_to].add(_value);
@@ -103,7 +88,7 @@ contract ERC20Standard is ERC20 {
 	    return true;
     }
 
-	function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+	function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success) {
 	    require(balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0);
         balances[_to] = balances[_to].add(_value);
         balances[_from] = balances[_from].sub(_value);
@@ -112,24 +97,24 @@ contract ERC20Standard is ERC20 {
         return true;
     }
 
-	function  approve(address _spender, uint256 _value) public returns (bool success) {
+	function approve(address _spender, uint256 _value) public override returns (bool success) {
 		allowed[msg.sender][_spender] = _value;
 		emit Approval(msg.sender, _spender, _value);
 		return true;
 	}
 
-	function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
+	function allowance(address _owner, address _spender) public override view returns (uint256 remaining) {
 		return allowed[_owner][_spender];
 	}
 	
-	function mint(address account, uint256 amount) public {
+	function mint(address account, uint256 amount) public override {
 	    require(msg.sender == minter && amount != 0);
         _totalSupply.add(amount);
         balances[account].add(amount);
         emit Transfer(address(0), account, amount);
 	}
 	
-	function burn(uint256 amount) public {
+	function burn(uint256 amount) public override {
 	    require(amount != 0 && amount <= balances[minter]);
         _totalSupply = _totalSupply.sub(amount);
         balances[minter] = balances[minter].sub(amount);
